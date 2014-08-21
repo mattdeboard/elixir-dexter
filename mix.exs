@@ -14,8 +14,8 @@ defmodule Dexter.Mixfile do
 
   defp deps do
     [
-        {:socket, ">= 0.2.7", github: "meh/elixir-socket"},
-        {:bencode, ">= 0.0.1", github: "mattdeboard/elixir-bencode"}
+        {:reagent, github: "meh/reagent"},
+        {:bencode, ">= 0.0.1", github: "tyrannosaurus/elixir-bencode"}
     ]
   end
 end
