@@ -10,7 +10,7 @@ defmodule Dexter.Mixfile do
 
   def application do
     [applications: [:logger],
-    ]
+     mod: {Dexter, [name: Dexter.Server]}]
   end
 
   defp deps do
