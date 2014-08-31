@@ -1,44 +1,28 @@
 defmodule Dexter.Server do
-  use Reagent.Behaviour
-
-  def start(connection) do
-    :gen_server.start __MODULE__, connection, [name: :dexter]
-  end
-
-  alias Dexter.Server
-
   use GenServer
+  require Code
+  require Socket
 
-  def init(conn) do
+  def start(port) do
+    :gen_server.start __MODULE__, port, [name: :dexter]
+  end
+
+  def init(port) do
     Process.flag :trap_exit, true
-
-    {:ok, conn}
+    socket = Socket.TCP.listen! port
+    {:ok, socket}
   end
 
-  def handle_info({ Reagent, :ack }, connection) do
-    connection |> Socket.active!
-
-    { :noreply, connection }
+  def handle_call(:eval_string, _from, string) do
+    {:reply, eval_string(string)}
   end
 
-  def handle_info({ :tcp, _, data }, connection) do
-    connection |> Socket.Stream.send! data
-
-    { :noreply, connection }
+  def eval_string(string, bindings \\ [], opts \\ []) do
+    Code.eval_string string, bindings, opts
   end
 
-  def handle_info({ :tcp_closed, _ }, _connection) do
-    { :stop, :normal, _connection }
-  end
-
-  def handle_info({ :EXIT, _pid, reason }, connection) do
-    connection |> Socket.active! :once
-
-    if reason != :normal do
-      :error_logger.error_report reason
-    end
-
-    { :noreply, connection }
+  def eval_quoted(quoted, bindings \\ [], opts \\ []) do
+    Code.eval_quoted quoted, bindings, opts
   end
 
 end

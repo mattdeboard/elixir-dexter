@@ -7,7 +7,7 @@ defmodule Dexter do
     import Supervisor.Spec, warn: false
 
     children = [
-      worker(Reagent, [Dexter.Server, [port: port]])
+      worker(Dexter.Server, [port: port])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
