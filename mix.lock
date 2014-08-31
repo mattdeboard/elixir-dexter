@@ -1,4 +1,4 @@
 %{"bencode": {:git, "git://github.com/tyrannosaurus/elixir-bencode.git", "6ae6b105171a430a305256ab5fd44bcf6e5bdbb3", []},
   "exts": {:package, "0.2.1"},
   "reagent": {:git, "git://github.com/meh/reagent.git", "393811583006e7ef148b6a5869293f20192f1bb0", []},
-  "socket": {:package, "0.2.7"}}
+  "socket": {:git, "git://github.com/meh/elixir-socket.git", "c8c7b5eb43a6a94a5e98821c69b8639a123cf6f8", []}}

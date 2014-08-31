@@ -9,11 +9,13 @@ defmodule Dexter.Mixfile do
   end
 
   def application do
-    [applications: [:logger]]
+    [applications: [:logger],
+    ]
   end
 
   defp deps do
     [
+        {:socket, ">= 0.2.5", github: "meh/elixir-socket"},
         {:bencode, ">= 0.0.1", github: "tyrannosaurus/elixir-bencode"}
     ]
   end
