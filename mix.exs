@@ -14,7 +14,6 @@ defmodule Dexter.Mixfile do
 
   defp deps do
     [
-        {:reagent, github: "meh/reagent"},
         {:bencode, ">= 0.0.1", github: "tyrannosaurus/elixir-bencode"}
     ]
   end
