@@ -9,8 +9,7 @@ defmodule Dexter.Server do
 
   def init({:port, port}) do
     Process.flag :trap_exit, true
-    socket = Socket.TCP.listen! port
-    Socket.TCP.accept socket, timeout: 5000
+    socket = Socket.TCP.listen! port, as: :list, packet: :line
     IO.puts "Accepting connections on port #{port}"
     {:ok, socket}
   end
